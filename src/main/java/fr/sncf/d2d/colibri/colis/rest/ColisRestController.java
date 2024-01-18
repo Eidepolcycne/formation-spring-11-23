@@ -1,5 +1,6 @@
 package fr.sncf.d2d.colibri.colis.rest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.sncf.d2d.colibri.colis.models.Colis;
-import fr.sncf.d2d.colibri.colis.models.Page;
 import fr.sncf.d2d.colibri.colis.usecases.CreateColisParams;
 import fr.sncf.d2d.colibri.colis.usecases.CreateColisUseCase;
 import fr.sncf.d2d.colibri.colis.usecases.PaginateColisUsecase;
+import fr.sncf.d2d.colibri.common.models.Page;
 import jakarta.validation.Valid;
 
 @RestController
@@ -20,7 +21,10 @@ public class ColisRestController {
     private final CreateColisUseCase createColisUseCase;
     private final PaginateColisUsecase paginateColisUsecase;
 
-    public ColisRestController(CreateColisUseCase createColisUseCase, PaginateColisUsecase paginateColisUsecase){
+    public ColisRestController(
+        CreateColisUseCase createColisUseCase, 
+        PaginateColisUsecase paginateColisUsecase
+    ){
         this.createColisUseCase = createColisUseCase;
         this.paginateColisUsecase = paginateColisUsecase;
     }

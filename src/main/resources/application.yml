@@ -1,3 +1,13 @@
+colibri:
+  users:
+    - id: 948c5c6b-cec0-4a56-a130-2448f88c5ca1
+      username: renaud
+      password: $2y$10$rQkGrIOuhKP8RntITTk6DON9h2fynHE68ydEvpiwyiTkD6b0spVUy
+      role: ADMIN
+    - id: 3630925a-337f-408b-820c-8a51e6365bbf
+      username: marko
+      password: $2y$10$GdoFoOZjNBS5D3Y5ARJoZefEKwOEN4.42C9YbgSTO0QAL3MCKeUmi
+      role: DELIVERY_PERSON
 spring:
   liquibase:
     change-log: classpath:/liquibase-changelog.xml
@@ -6,3 +16,4 @@ spring:
       enabled: true  
   datasource:
     url: jdbc:h2:file:/tmp/colibri.database
+  

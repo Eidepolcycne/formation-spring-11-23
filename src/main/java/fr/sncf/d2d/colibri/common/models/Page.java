@@ -1,4 +1,4 @@
-package fr.sncf.d2d.colibri.colis.models;
+package fr.sncf.d2d.colibri.common.models;
 
 import java.util.List;
 

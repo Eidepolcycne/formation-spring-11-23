@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import fr.sncf.d2d.colibri.colis.models.Colis;
-import fr.sncf.d2d.colibri.colis.models.Page;
+import fr.sncf.d2d.colibri.common.models.Page;
 
 @Repository
 public class ColisRepository {
