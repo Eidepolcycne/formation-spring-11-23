@@ -1,5 +1,7 @@
 package fr.sncf.d2d.colibri.colis.rest;
 
+import java.util.UUID;
+
 import org.springframework.util.StringUtils;
 
 import jakarta.validation.constraints.AssertTrue;
@@ -16,7 +18,7 @@ public class CreateColisBody {
 
     private String details;
 
-    private String deliveryPersonId;
+    private UUID deliveryPersonId;
 
     @AssertTrue
     private boolean validateDetails(){
@@ -25,7 +27,7 @@ public class CreateColisBody {
 
     @AssertTrue
     private boolean validateDeliveryPersonId(){
-        return this.deliveryPersonId == null || StringUtils.hasText(this.deliveryPersonId);
+        return this.deliveryPersonId == null;
     }
 
     public String getAddress() {
@@ -52,11 +54,11 @@ public class CreateColisBody {
         this.details = details;
     }
 
-    public String getDeliveryPersonId() {
+    public UUID getDeliveryPersonId() {
         return this.deliveryPersonId;
     }
 
-    public void setDeliveryPersonId(String deliveryPersonId) {
+    public void setDeliveryPersonId(UUID deliveryPersonId) {
         this.deliveryPersonId = deliveryPersonId;
     }
 

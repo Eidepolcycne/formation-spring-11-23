@@ -2,6 +2,7 @@ package fr.sncf.d2d.colibri.common.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +25,11 @@ public class SecurityConfiguration {
         return http
             .httpBasic(Customizer.withDefaults())
             .userDetailsService(this.usersRepository)
+            .authorizeHttpRequests(requests -> requests
+                .requestMatchers(HttpMethod.GET, "/colis").authenticated()
+                .requestMatchers(HttpMethod.POST, "/colis").hasAnyRole("ADMIN")
+                .anyRequest().denyAll()
+            )
             .build();
     }
 

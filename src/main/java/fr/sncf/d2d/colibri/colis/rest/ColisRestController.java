@@ -1,6 +1,7 @@
 package fr.sncf.d2d.colibri.colis.rest;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import fr.sncf.d2d.colibri.colis.usecases.CreateColisParams;
 import fr.sncf.d2d.colibri.colis.usecases.CreateColisUseCase;
 import fr.sncf.d2d.colibri.colis.usecases.PaginateColisUsecase;
 import fr.sncf.d2d.colibri.common.models.Page;
+import fr.sncf.d2d.colibri.users.exceptions.UserNotFoundException;
 import jakarta.validation.Valid;
 
 @RestController
@@ -30,14 +32,12 @@ public class ColisRestController {
     }
     
     @PostMapping
-    public Colis createColis(@Valid @RequestBody CreateColisBody body){
-
+    public Colis createColis(@Valid @RequestBody CreateColisBody body) throws UserNotFoundException {
         final var params = new CreateColisParams();
         params.setAddress(body.getAddress());
         params.setDetails(body.getDetails());
         params.setDeliveryPersonId(body.getDeliveryPersonId());
         params.setEmail(body.getEmail());
-
         return this.createColisUseCase.create(params);
     }
 

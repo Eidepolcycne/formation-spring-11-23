@@ -8,13 +8,13 @@ public class Colis {
     
     private final String address;
 
-    private final String deliveryPersonId;
+    private final UUID deliveryPersonId;
 
     private final String details;
 
     private final String email;
 
-    private Colis(UUID id, String address, String deliveryPersonId, String details, String email){
+    private Colis(UUID id, String address, UUID deliveryPersonId, String details, String email){
         this.id = id;
         this.address = address;
         this.deliveryPersonId = deliveryPersonId;
@@ -26,7 +26,7 @@ public class Colis {
         return this.address;
     }
 
-    public String getDeliveryPersonId() {
+    public UUID getDeliveryPersonId() {
         return this.deliveryPersonId;
     }
 
@@ -56,7 +56,7 @@ public class Colis {
 
         private String address;
 
-        private String deliveryPersonId;
+        private UUID deliveryPersonId;
 
         private String details;
 
@@ -74,7 +74,7 @@ public class Colis {
             return this;
         }
 
-        public ColisBuilder deliveryPersonId(String deliveryPersonId){
+        public ColisBuilder deliveryPersonId(UUID deliveryPersonId){
             this.deliveryPersonId = deliveryPersonId;
             return this;
         }

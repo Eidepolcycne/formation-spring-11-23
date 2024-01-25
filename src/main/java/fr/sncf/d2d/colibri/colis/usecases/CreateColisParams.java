@@ -1,5 +1,7 @@
 package fr.sncf.d2d.colibri.colis.usecases;
 
+import java.util.UUID;
+
 public class CreateColisParams {
     
     private String address;
@@ -8,7 +10,7 @@ public class CreateColisParams {
 
     private String details;
 
-    private String deliveryPersonId;
+    private UUID deliveryPersonId;
 
     public String getAddress() {
         return this.address;
@@ -34,11 +36,11 @@ public class CreateColisParams {
         this.details = details;
     }
 
-    public String getDeliveryPersonId() {
+    public UUID getDeliveryPersonId() {
         return this.deliveryPersonId;
     }
 
-    public void setDeliveryPersonId(String deliveryPersonId) {
+    public void setDeliveryPersonId(UUID deliveryPersonId) {
         this.deliveryPersonId = deliveryPersonId;
     }
 

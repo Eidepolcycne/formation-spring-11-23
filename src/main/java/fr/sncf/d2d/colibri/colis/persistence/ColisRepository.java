@@ -1,6 +1,7 @@
 package fr.sncf.d2d.colibri.colis.persistence;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.Collections;
@@ -20,7 +21,7 @@ public class ColisRepository {
         .id(UUID.fromString(resultSet.getString("id")))
         .address(resultSet.getString("address"))
         .email(resultSet.getString("email"))
-        .deliveryPersonId(resultSet.getString("delivery_person_id"))
+        .deliveryPersonId(Optional.ofNullable(resultSet.getString("delivery_person_id")).map(UUID::fromString).orElse(null))
         .details(resultSet.getString("details"))
         .build(); 
 

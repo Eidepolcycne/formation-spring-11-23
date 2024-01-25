@@ -24,6 +24,10 @@ public class UsersRepository implements UserDetailsService {
         this.users = usersConfiguration.getUsers();
     }
 
+    public List<User> getUsers(){
+        return this.users;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.users.stream()
