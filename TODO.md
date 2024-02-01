@@ -127,7 +127,7 @@ Interface web pour observer les mails: `127.0.0.1:1080`
 
 En cas d'assignation ou de changement de livreur, il faudra vérifier si l'utilisateur est bien existant.
 
-Il faudra également appliquer ce comportement sur l'endpoint de création de colis sur `POST /packages`.
+Il faudra également appliquer ce comportement sur l'endpoint de création de colis sur `POST /colis`.
 
 ## Sécurité
 
@@ -140,6 +140,10 @@ Un utilisateur non authentifié ne peut rien faire.
 ## Nettoyer les colis qui ont été livrés
 
 Tous les mois, une tâche planifiée doit supprimer tous les colis qui sont en statut `delivered`.
+
+## BONUS: Autoriser les utilisateurs destinataires à consulter leur colis
+
+Implémenter le mécanisme de tracking code aléatoire positionné au niveau du colis permettant de lire l'état du colis.
 
 ## BONUS: Tests d'intégration
 
