@@ -34,7 +34,7 @@ public class CreateColisUseCase {
             throw UserNotFoundException.id(params.getDeliveryPersonId());
         }
 
-        this.colisRepository.persist(colis);
+        this.colisRepository.insert(colis);
         
         return colis;
     }

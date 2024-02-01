@@ -8,6 +8,7 @@ import java.util.Collections;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 
 import fr.sncf.d2d.colibri.colis.models.Colis;
@@ -37,7 +38,8 @@ public class ColisRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void persist(Colis colis){
+    @PreAuthorize("@colisGuard.canCreate(#colis, principal)")
+    public void insert(Colis colis){
 
         colis.setId(UUID.randomUUID());
 
