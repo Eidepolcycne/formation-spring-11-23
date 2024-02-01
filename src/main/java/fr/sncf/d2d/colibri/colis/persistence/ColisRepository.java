@@ -17,13 +17,21 @@ import fr.sncf.d2d.colibri.common.models.Page;
 public class ColisRepository {
     
     private final NamedParameterJdbcTemplate jdbcTemplate;
-    private static final RowMapper<Colis> ROW_MAPPER = (resultSet, rowNum) -> Colis.builder()
-        .id(UUID.fromString(resultSet.getString("id")))
-        .address(resultSet.getString("address"))
-        .email(resultSet.getString("email"))
-        .deliveryPersonId(Optional.ofNullable(resultSet.getString("delivery_person_id")).map(UUID::fromString).orElse(null))
-        .details(resultSet.getString("details"))
-        .build(); 
+    private static final RowMapper<Colis> ROW_MAPPER = (resultSet, rowNum) -> {
+        final var colisBuilder = Colis.builder()
+            .id(UUID.fromString(resultSet.getString("id")))
+            .address(resultSet.getString("address"))
+            .email(resultSet.getString("email"));
+
+        Optional.ofNullable(resultSet.getString("delivery_person_id"))
+            .map(UUID::fromString)
+            .ifPresent(colisBuilder::deliveryPersonId);
+
+        Optional.ofNullable(resultSet.getString("details"))
+            .ifPresent(colisBuilder::details);
+
+        return colisBuilder.build();
+    }; 
 
     public ColisRepository(NamedParameterJdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
