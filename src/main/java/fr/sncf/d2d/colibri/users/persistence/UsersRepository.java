@@ -30,7 +30,6 @@ public class UsersRepository implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println(username);
         return this.users.stream()
             .filter(user -> user.getUsername().equals(username))
             .findFirst()
