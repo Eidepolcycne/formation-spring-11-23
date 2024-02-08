@@ -29,4 +29,23 @@ public class ColisGuard {
 
         return false;
     }
+
+    public boolean canUpdate(Colis colis, Object principal){
+        final var userdetails = (ApplicationUserDetails)principal;
+
+        if (userdetails != null){
+
+            final var user = userdetails.getUser();
+
+            if (user.getRole().equals(Role.ADMIN)){
+                return true;
+            }
+
+            if (user.getRole().equals(Role.DELIVERY_PERSON)){
+                return colis.getDeliveryPersonId().equals(user.getId());
+            }
+        }    
+
+        return false;
+    }
 }

@@ -26,13 +26,14 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
             // WARNING ! ne jamais faire en production.
+            // plutôt appliquer le guide 
             .csrf(csrf -> csrf.disable())
-            
             .httpBasic(Customizer.withDefaults())
             .userDetailsService(this.usersRepository)
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers(HttpMethod.GET, "/colis").authenticated()
                 .requestMatchers(HttpMethod.POST, "/colis").hasAnyRole("ADMIN", "DELIVERY_PERSON")
+                .requestMatchers(HttpMethod.PATCH, "/colis").hasAnyRole("ADMIN", "DELIVERY_PERSON")
                 .anyRequest().authenticated()
             )
             .build();

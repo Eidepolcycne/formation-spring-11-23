@@ -24,4 +24,11 @@
             </column>
         </createTable>  
     </changeSet>
+    <changeSet author="renaud" id="2">
+        <addColumn tableName="colis">
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

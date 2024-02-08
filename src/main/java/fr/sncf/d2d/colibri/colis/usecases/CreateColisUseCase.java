@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import fr.sncf.d2d.colibri.colis.models.Colis;
+import fr.sncf.d2d.colibri.colis.models.ColisStatus;
 import fr.sncf.d2d.colibri.colis.persistence.ColisRepository;
 import fr.sncf.d2d.colibri.users.exceptions.UserNotFoundException;
 import fr.sncf.d2d.colibri.users.persistence.UsersRepository;
@@ -28,9 +29,10 @@ public class CreateColisUseCase {
             .email(params.getEmail())
             .details(params.getDetails())
             .deliveryPersonId(params.getDeliveryPersonId())
+            .status(ColisStatus.PENDING)
             .build();
 
-        if (this.usersRepository.getUsers().stream().filter(user -> user.getId().equals(params.getDeliveryPersonId())).findFirst().isEmpty()){
+        if (params.getDeliveryPersonId() != null && this.usersRepository.getUsers().stream().filter(user -> user.getId().equals(params.getDeliveryPersonId())).findFirst().isEmpty()){
             throw UserNotFoundException.id(params.getDeliveryPersonId());
         }
 

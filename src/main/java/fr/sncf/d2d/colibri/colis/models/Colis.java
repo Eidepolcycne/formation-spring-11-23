@@ -6,20 +6,23 @@ public class Colis {
 
     private UUID id;
     
-    private final String address;
+    private String address;
 
-    private final UUID deliveryPersonId;
+    private UUID deliveryPersonId;
 
-    private final String details;
+    private String details;
 
-    private final String email;
+    private String email;
 
-    private Colis(UUID id, String address, UUID deliveryPersonId, String details, String email){
+    private ColisStatus status;
+
+    private Colis(UUID id, String address, UUID deliveryPersonId, String details, String email, ColisStatus status){
         this.id = id;
         this.address = address;
         this.deliveryPersonId = deliveryPersonId;
         this.details = details;
         this.email = email;
+        this.status = status;
     }
 
     public String getAddress() {
@@ -38,12 +41,39 @@ public class Colis {
         return this.email;
     }
 
+    public ColisStatus getStatus(){
+        return this.status;
+    }
+
     public UUID getId(){
         return this.id;
     }
 
     public void setId(UUID id){
+        if (this.id != null){
+            throw new IllegalStateException();
+        }
         this.id = id;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDeliveryPersonId(UUID deliveryPersonId) {
+        this.deliveryPersonId = deliveryPersonId;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setStatus(ColisStatus status) {
+        this.status = status;
     }
 
     public static ColisBuilder builder(){
@@ -61,6 +91,8 @@ public class Colis {
         private String details;
 
         private String email;
+
+        private ColisStatus status;
 
         private ColisBuilder(){}
 
@@ -89,8 +121,13 @@ public class Colis {
             return this;
         }
 
+        public ColisBuilder status(ColisStatus status){
+            this.status = status;
+            return this;
+        }
+
         public Colis build(){
-            return new Colis(this.id, this.address, this.deliveryPersonId, this.details, this.email);
+            return new Colis(this.id, this.address, this.deliveryPersonId, this.details, this.email, this.status);
         }
     }
 }

@@ -13,6 +13,9 @@ colibri:
       password: $2y$10$bxXm7vBxb.Nyjs8CXdFZb.HBqtOjmtaNmevFDvRv5XMxMGCDXUY8S
       role: DELIVERY_PERSON
 spring:
+  mail:
+    host: 127.0.0.1
+    port: 1025
   liquibase:
     change-log: classpath:/liquibase-changelog.xml
   h2:
